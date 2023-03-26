@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gateway
+    username: postgres
+    password: treeleaf#523
+    initialization-mode: always
+  cloud:
+    gateway:
+      routes:
+        - id: blog-service
+          uri: lb://blog-service
+          predicates:
+          - Path=/blog/**
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+
+
+ribbon:
+  eureka:
+    enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: true
+jwt:
+  token:
+    prefix: Bearer
+    validity: 18000
+  authorities:
+    key: roles
+  header:
+    string: Authorization
+  signing:
+    key:  N2FkZDYxOTdmMDg0ZjI2NTFhMWFmNDBkNTg4MTczNTBmMjgzM2VhZjFjOGI5ODAyYjYyNzE4NjU0N2MwZDZjNzJkZWJhY2FhZGZhN2ZmYTk0MWU2NTRjNTQyMWViNDFkNWFiZDY0ZjI3NDE1YmE5NjE3YTJkNDVkYjRlMjVmYjI=
+

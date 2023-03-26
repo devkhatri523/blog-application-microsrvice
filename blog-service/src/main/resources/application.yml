@@ -1,0 +1,22 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: blog-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/blog
+    username: postgres
+    password: treeleaf#523
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: true
